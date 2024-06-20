@@ -41,8 +41,29 @@ void printReverse(Node* x) {
 }
 
 int main() {
-    Node* head = NULL;  // Start with an empty list
-    Node* tail = NULL;  // Start with an empty list
+    Node* head = new Node;  
+    Node* tail = new Node;  
+    head->Data = 1;
+    head->Right = tail;
+    head->Left = NULL;
+
+    tail->Data = 5;
+    tail->Left = head;
+    tail->Right = NULL;
+
+    AddToTail(tail, 2);
+    AddToTail(tail, 8);
+    AddToTail(tail, 20);
+    AddToTail(tail, 16);
+    AddToTail(tail, 9);
+    AddToTail(tail, 25);
+    AddToTail(tail, 3);
+    AddToTail(tail, 31);
+    AddToTail(tail, 45);
+    AddToTail(tail, 39);
+    AddToTail(tail, 50);
+    AddToTail(tail, 27);
+    AddToTail(tail, 15);
    
     bool status = true;
     int num;
