@@ -2,7 +2,7 @@
 using namespace std;
 
 // Creating a simple double linked list and testing functions
-struct Node{
+struct Node {
     public:
         int Data;
         Node* Right;  // Next node is right node
@@ -23,7 +23,7 @@ void AddToTail(Node*& tail, int data) {
 }
 
 // Function to print elements from head to tail
-void printElements(Node* n){
+void printElements(Node* n) {
     while (n != NULL) {
         cout << n->Data << " ";
         n = n->Right;
@@ -32,32 +32,31 @@ void printElements(Node* n){
 }
 
 // Function to print elements from tail to head
-void printReverse(Node* x){
-    while (x != NULL){
+void printReverse(Node* x) {
+    while (x != NULL) {
         cout << x->Data << " ";
         x = x->Left;
     }
     cout << endl;
 }
 
-int main(){
+int main() {
     Node* head = NULL;  // Start with an empty list
     Node* tail = NULL;  // Start with an empty list
    
     bool status = true;
-    int num = 0;
+    int num;
 
-    while(status){
-        switch(num){
-            case 0:
-                cout << "Double Linked List Menu" << endl;
-                cout << "Option 1: Add new element." << endl;
-                cout << "Option 2: Print List elements." << endl;
-                cout << "Option 3: Print List elements in reverse order." << endl;
-                cout << "Option 4: Exit." << endl;
-                cout << "Enter a number 1-4:" << endl;
-                cin >> num;
-                break;
+    do {
+        cout << "Double Linked List Menu" << endl;
+        cout << "Option 1: Add new element." << endl;
+        cout << "Option 2: Print List elements." << endl;
+        cout << "Option 3: Print List elements in reverse order." << endl;
+        cout << "Option 4: Exit." << endl;
+        cout << "Enter a number 1-4:" << endl;
+        cin >> num;
+
+        switch(num) {
             case 1:
                 cout << "Enter value for new element..." << endl;
                 int n;
@@ -73,17 +72,14 @@ int main(){
                 } else {
                     AddToTail(tail, n);
                 }
-                num = 0;
                 break;
             case 2:
                 cout << "Printing List elements..." << endl;
                 printElements(head);
-                num = 0;
                 break;
             case 3:
                 cout << "Printing List elements in reverse order..." << endl;
                 printReverse(tail);
-                num = 0;
                 break;
             case 4:
                 cout << "Exiting..." << endl;
@@ -91,13 +87,12 @@ int main(){
                 break;
             default:
                 cout << "Invalid option. Please enter a number 1-4:" << endl;
-                num = 0;
                 break;
         }
-    }
+    } while(status);
 
     // Clean up memory
-    Node* current = head;  // when we create a "new node", memory is allocated. Deleting that memory for efficency
+    Node* current = head;
     while (current != NULL) {
         Node* next = current->Right;
         delete current;
