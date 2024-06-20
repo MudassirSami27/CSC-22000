@@ -39,47 +39,68 @@ void printReverse(Node* x){
 }
 
 int main(){
-    // Initializing nodes
     Node* head = new Node;
-    Node* second = new Node;
-    Node* third = new Node;
     Node* tail = new Node;
-
+    
     head->Data = 1;
-    head->Right = second;
+    head->Right = tail;
     head->Left = NULL;
 
-    second->Data = 2;
-    second->Left = head;
-    second->Right = third;
-
-    third->Data = 3;
-    third->Left = second;
-    third->Right = tail;
-
     tail->Data = 5;
-    tail->Left = third;
+    tail->Left = head;
     tail->Right = NULL;
 
-    cout << "BEFOR ADDING TO TAIL: " << endl;
-    cout << "Print elements: " << endl;
-    printElements(head);
-
-    cout << "Print Reverse: " << endl;
-    printReverse(tail);
-
-    // Adding elements to the tail
-    
+    AddToTail(tail, 2);
+    AddToTail(tail, 8);
+    AddToTail(tail, 20);
+    AddToTail(tail, 16);
+    AddToTail(tail, 9);
+    AddToTail(tail, 25);
+    AddToTail(tail, 3);
+    AddToTail(tail, 31);
+    AddToTail(tail, 45);
+    AddToTail(tail, 39);
+    AddToTail(tail, 50);
+    AddToTail(tail, 27);
     AddToTail(tail, 15);
+ 
+    bool status = true;
+    int num = 0;
 
-    cout << "AFTER ADDING TO TAIL: " << endl;
-
-    cout << "Print elements: " << endl;
-    // Printing elements
-    printElements(head);
-
-    cout << "Print Reverse: " << endl;
-    printReverse(tail);
-
+    while(status){
+        switch(num){
+            case 0:
+                cout << "Double Linked List Menu" << endl;
+                cout << "Option 1: Add new element." << endl;
+                cout << "Option 2: Print List elements." << endl;
+                cout << "Option 3: Print List elements in reverse order." << endl;
+                cout << "Option 4: Exit." << endl;
+                cout << "Enter a number 1-4:" << endl;
+                cin >> num;
+                break;
+            case 1:
+                cout << "Enter value for new element..." << endl;
+                int n;
+                cin >> n;    
+                cout << "Adding new element..." << endl;        
+                AddToTail(tail, n);
+                num = 0;
+                break;
+            case 2:
+                cout << "Printing List elements..." << endl;
+                printElements(head);
+                num = 0;
+                break;
+            case 3:
+                cout << "Printing List elements in reverse order..." << endl;
+                printReverse(tail);
+                num = 0;
+                break;
+            case 4:
+                cout << "Exiting..." << endl;
+                status = false;
+                break;
+        }
+    }
     return 0;
 }
