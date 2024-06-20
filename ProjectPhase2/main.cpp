@@ -6,15 +6,15 @@ struct Node{
     public:
         int Data;
         Node* Right;  // Next node is right node
-        Node* Left;    // Previous node is left node
+        Node* Left;   // Previous node is left node
 };
 
 // Function to add a new node with value `data` to the tail of the list
 void AddToTail(Node*& tail, int data) {
     Node* newNode = new Node;
-    newNode->Data = data;  
+    newNode->Data = data;
     newNode->Right = NULL; // newNode is the tail so there should be nothing after
-    newNode->Left = tail; // left pointer of the newNode now points to tail node(newNode)
+    newNode->Left = tail;  // left pointer of the newNode now points to tail node(newNode)
     
     if (tail != NULL) {
         tail->Right = newNode; // if current tail is not empty. Sets the right pointer of the current tail to the newNode
@@ -25,45 +25,25 @@ void AddToTail(Node*& tail, int data) {
 // Function to print elements from head to tail
 void printElements(Node* n){
     while (n != NULL) {
-        cout << n->Data << endl;
+        cout << n->Data << " ";
         n = n->Right;
     }
+    cout << endl;
 }
 
 // Function to print elements from tail to head
 void printReverse(Node* x){
     while (x != NULL){
-        cout << x->Data << endl;
+        cout << x->Data << " ";
         x = x->Left;
     }
+    cout << endl;
 }
 
 int main(){
-    Node* head = new Node;
-    Node* tail = new Node;
-    
-    head->Data = 1;
-    head->Right = tail;
-    head->Left = NULL;
-
-    tail->Data = 5;
-    tail->Left = head;
-    tail->Right = NULL;
-
-    AddToTail(tail, 2);
-    AddToTail(tail, 8);
-    AddToTail(tail, 20);
-    AddToTail(tail, 16);
-    AddToTail(tail, 9);
-    AddToTail(tail, 25);
-    AddToTail(tail, 3);
-    AddToTail(tail, 31);
-    AddToTail(tail, 45);
-    AddToTail(tail, 39);
-    AddToTail(tail, 50);
-    AddToTail(tail, 27);
-    AddToTail(tail, 15);
- 
+    Node* head = NULL;  // Start with an empty list
+    Node* tail = NULL;  // Start with an empty list
+   
     bool status = true;
     int num = 0;
 
@@ -81,9 +61,18 @@ int main(){
             case 1:
                 cout << "Enter value for new element..." << endl;
                 int n;
-                cin >> n;    
-                cout << "Adding new element..." << endl;        
-                AddToTail(tail, n);
+                cin >> n;
+                cout << "Adding new element..." << endl;
+                if (head == NULL) {
+                    // If the list is empty, initialize both head and tail
+                    head = new Node;
+                    head->Data = n;
+                    head->Right = NULL;
+                    head->Left = NULL;
+                    tail = head;
+                } else {
+                    AddToTail(tail, n);
+                }
                 num = 0;
                 break;
             case 2:
@@ -100,7 +89,20 @@ int main(){
                 cout << "Exiting..." << endl;
                 status = false;
                 break;
+            default:
+                cout << "Invalid option. Please enter a number 1-4:" << endl;
+                num = 0;
+                break;
         }
     }
+
+    // Clean up memory
+    Node* current = head;  // when we create a "new node", memory is allocated. Deleting that memory for efficency
+    while (current != NULL) {
+        Node* next = current->Right;
+        delete current;
+        current = next;
+    }
+
     return 0;
 }
