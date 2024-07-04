@@ -23,6 +23,10 @@ class BinaryTree{
 
     // Recursive function to insert a new value into the tree
     void insert(Node*& node, int val) {
+        if (val < 1 || val > 40){
+            cout << "Value is not within range please input value within the range 1 to 40" << endl;
+            return;
+        }
         // Base case: if the current node is null, create a new node with the value
         if (node == NULL) {
             node = new Node(val); //if tree is empty add a new node that holds the value user selected
@@ -110,6 +114,14 @@ class BinaryTree{
     int nodeCount(){
         return countNodes(root);
     }
+    void TreeTraversal(){
+        cout << "Inorder Traversal: " << endl;
+        inorder();
+        cout << "\nPostorder Traversal: " << endl;
+        postorder();
+        cout << "\nPreorder Traversal: " << endl;
+        preorder();
+    }
 
     // Recursive function to count the total number of nodes in the tree
     int countNodes(Node* node) {
@@ -162,14 +174,7 @@ int main(){
                 break;
             case 2:
                 cout << "Printing Tree in Preorder, Inorder, and Postorder..." << endl;
-                cout << "Preorder Traversal: ";
-                tree.preorder();
-                cout << endl;
-                cout << "Inorder Traversal: "; 
-                tree.inorder();
-                cout << endl;
-                cout << "Postorder Traversal: ";
-                tree.postorder();
+                tree.TreeTraversal();
                 cout << endl;
                 break;
             case 3: 
