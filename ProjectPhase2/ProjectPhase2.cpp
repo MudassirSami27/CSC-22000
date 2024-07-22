@@ -14,27 +14,27 @@ void AddToTail(Node*& tail, int data) {
     Node* newNode = new Node;
     newNode->Data = data;
     newNode->Right = NULL; // newNode is the tail so there should be nothing after
-    newNode->Left = tail;  // left pointer of the newNode now points to tail node(newNode)
+    newNode->Left = tail;  // left pointer of the newNode points to current tail
     
     if (tail != NULL) {
-        tail->Right = newNode; // if current tail is not empty. Sets the right pointer of the current tail to the newNode
+        tail->Right = newNode; // if current tail is not empty. Sets the right pointer of the current tail to the newNode which is new tail
     }
     tail = newNode; // updates tail as the newNode
 }
 
 // Function to print elements from head to tail
 void printElements(Node* n) {
-    while (n != NULL) {
-        cout << n->Data << " ";
-        n = n->Right;
+    while (n != NULL) { // while there exist a node
+        cout << n->Data << " "; // print the value
+        n = n->Right; // go to the right node
     }
     cout << endl;
 }
 
 // Function to print elements from tail to head
 void printReverse(Node* x) {
-    while (x != NULL) {
-        cout << x->Data << " ";
+    while (x != NULL) { 
+        cout << x->Data << " "; 
         x = x->Left;
     }
     cout << endl;
@@ -67,7 +67,6 @@ int main() {
    
     bool status = true;
     int num;
-
     do {
         cout << "Double Linked List Menu" << endl;
         cout << "Option 1: Add new element." << endl;
